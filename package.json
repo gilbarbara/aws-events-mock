@@ -1,6 +1,6 @@
 {
   "name": "@gilbarbara/aws-events-mock",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Generate AWS events mocks for testing",
   "author": "Gil Barbara <gilbarbara@gmail.com>",
   "repository": {
@@ -96,7 +96,7 @@
     ]
   },
   "prettier": "@gilbarbara/prettier-config",
-  "engines" : {
-    "node" : ">=18"
+  "engines": {
+    "node": ">=18"
   }
 }
