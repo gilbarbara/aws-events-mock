@@ -1,0 +1,14 @@
+{
+  "name": "@gilbarbara/aws-events-mock",
+  "version": "0.0.0",
+  "description": "Generate AWS events mocks for testing",
+  "author": "Gil Barbara <gilbarbara@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gilbarbara/aws-events-mock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gilbarbara/services-helpers/issues"
+  },
+  "homepage": "https://github.com/gilbarbara/services-helpers#readme"
+}
