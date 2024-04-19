@@ -1,8 +1,7 @@
 {
   "Records": [
     {
-      "eventID": "1",
-      "eventVersion": "1.0",
+      "awsRegion": "us-west-2",
       "dynamodb": {
         "Keys": {
           "Id": {
@@ -10,21 +9,22 @@
           }
         },
         "NewImage": {
-          "Message": {
-            "S": "New item!"
-          },
           "Id": {
             "N": "101"
+          },
+          "Message": {
+            "S": "New item!"
           }
         },
-        "StreamViewType": "NEW_AND_OLD_IMAGES",
         "SequenceNumber": "111",
-        "SizeBytes": 26
+        "SizeBytes": 26,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "awsRegion": "us-west-2",
+      "eventID": "1",
       "eventName": "INSERT",
+      "eventSource": "aws:dynamodb",
       "eventSourceARN": "arn:aws:dynamodb:us-east-1:123456789012:table/images",
-      "eventSource": "aws:dynamodb"
+      "eventVersion": "1.0"
     }
   ]
 }

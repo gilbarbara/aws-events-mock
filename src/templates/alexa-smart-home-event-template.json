@@ -1,11 +1,11 @@
 {
   "header": {
-    "payloadVersion": "1",
+    "name": "SwitchOnOffRequest",
     "namespace": "Control",
-    "name": "SwitchOnOffRequest"
+    "payloadVersion": "1"
   },
   "payload": {
-    "switchControlAction": "TURN_ON",
+    "accessToken": "sampleAccessToken",
     "appliance": {
       "additionalApplianceDetails": {
         "key2": "value2",
@@ -13,6 +13,6 @@
       },
       "applianceId": "sampleId"
     },
-    "accessToken": "sampleAccessToken"
+    "switchControlAction": "TURN_ON"
   }
 }
