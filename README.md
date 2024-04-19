@@ -6,19 +6,19 @@ A small library that includes detailed mocks of AWS Lambda event sources.
 Useful for unit testing your Lambda functions.
 
 Supported Event Sources are:
-- API Gateway
-- SNS
-- SQS
-- DynamoDB
-- S3
-- Scheduled
-- WebSocket
 - Alexa Skill
 - Alexa Smart Home
+- API Gateway
 - CloudWatch
 - CloudWatch Log
 - Cognito Pool
+- DynamoDB
 - IoT
+- S3
+- Scheduled
+- SNS
+- SQS
+- WebSocket
 
 The library uses default event source templates and merges them with any overwrite you provide.  
 Check out the [JSON template files](src/templates) to learn more about the data structure of each event source.
@@ -32,7 +32,7 @@ npm i @gilbarbara/aws-events-mock
 ### SNS
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const mocked = createEvent(
   "aws:sns",
@@ -48,7 +48,7 @@ const mocked = createEvent(
 ### API Gateway
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const event = createEvent(
   "aws:apiGateway",
@@ -63,7 +63,7 @@ const event = createEvent(
 ### S3
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const event = createEvent(
   "aws:s3",
@@ -85,7 +85,7 @@ const event = createEvent(
 ### Scheduled
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const event = createEvent(
   "aws:scheduled",
@@ -97,7 +97,7 @@ const event = createEvent(
 ### Kinesis
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const event = createEvent(
   "aws:kinesis",
@@ -109,7 +109,7 @@ const event = createEvent(
 ### Dynamo
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "@gilbarbara/aws-events-mock"
 
 const event = createEvent(
   "aws:dynamo",

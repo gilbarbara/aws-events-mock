@@ -1,41 +1,39 @@
 import createEvent from '../src';
 
-describe('creating a new SNS event', () => {
+describe('create an AlexaSkill event', () => {
   it('should return a valid event', () => {
-    const event = createEvent('aws:sns', {
-      Records: [
-        {
-          Sns: {
-            Message: 'trigger-email',
+    const event = createEvent('aws:alexaSkill', {
+      request: {
+        type: 'CanFulfillIntentRequest',
+      },
+      context: {
+        System: {
+          device: {
+            deviceId: 'myDevice',
           },
         },
-      ],
+      },
     });
 
-    expect(event?.Records?.[0]?.Sns?.Message).toBe('trigger-email');
-    expect(event?.Records?.[0]?.Sns?.Type).toBe('Notification');
+    expect(event?.request?.type).toBe('CanFulfillIntentRequest');
+    expect(event?.context?.System?.device?.deviceId).toBe('myDevice');
   });
 });
 
-describe('createSqsEvent()', () => {
-  it('should return SQS mocked event', () => {
-    const event = createEvent('aws:sqs', {
-      Records: [
-        {
-          body: JSON.stringify({
-            foo: 'bar',
-          }),
-        },
-      ],
+describe('create an AlexaSmartHome event', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:alexaSmartHome', {
+      payload: {
+        switchControlAction: 'TURN_OFF',
+      },
     });
 
-    expect(event?.Records?.[0]?.body).toBe('{"foo":"bar"}');
-    expect(event?.Records?.[0]?.eventSource).toBe('aws:sqs');
+    expect(event?.payload?.switchControlAction).toBe('TURN_OFF');
   });
 });
 
-describe('createApigEvent()', () => {
-  it('should return APIG mocked event', () => {
+describe('create an ApiGateway event()', () => {
+  it('should return a valid event', () => {
     const event = createEvent('aws:apiGateway', {
       body: JSON.stringify({
         first_name: 'Sam',
@@ -50,29 +48,74 @@ describe('createApigEvent()', () => {
   });
 });
 
-describe('createWebsocketEvent()', () => {
-  it('should return websocket mocked event', () => {
-    const event = createEvent('aws:websocket', {
-      body: JSON.stringify({
-        first_name: 'Sam',
-        last_name: 'Smith',
-      }),
-      requestContext: {
-        connectedAt: 123,
-        connectionId: 'abc123',
-      },
+describe('create a CloudWatch event()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:cloudWatch', {
+      'detail-type': 'Something has been deleted.',
+      region: 'us-east-1',
     });
-    const parsedBody = JSON.parse(event.body || '');
 
-    expect(parsedBody.first_name).toBe('Sam');
-    expect(parsedBody.last_name).toBe('Smith');
-    expect(event?.requestContext?.connectedAt).toBe(123);
-    expect(event?.requestContext?.connectionId).toBe('abc123');
+    expect(event['detail-type']).toBe('Something has been deleted.');
+    expect(event.region).toBe('us-east-1');
   });
 });
 
-describe('createS3Event()', () => {
-  it('should return S3 mocked event', () => {
+describe('create CloudWatchLog event', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:cloudWatchLog', {
+      awslogs: {
+        data: 'Some gzipped, then base64 encoded data',
+      },
+    });
+
+    expect(event?.awslogs?.data).toBe('Some gzipped, then base64 encoded data');
+  });
+});
+
+describe('create a CognitoPool event()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:cognitoUserPool', {
+      userName: 'notAJ',
+    });
+
+    expect(event.userName).toBe('notAJ');
+  });
+});
+
+describe('create an Iot event()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:iot', {
+      this: {
+        can: {
+          be: 'anything I want',
+        },
+      },
+    });
+
+    expect(event.this.can.be).toBe('anything I want');
+  });
+});
+
+describe('create a Kinesis event', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:kinesis', {
+      Records: [
+        {
+          kinesis: {
+            data: Buffer.from('kinesis test').toString('base64'),
+          },
+        },
+      ],
+    });
+
+    expect(Buffer.from(event?.Records?.[0]?.kinesis?.data ?? '', 'base64').toString('ascii')).toBe(
+      'kinesis test',
+    );
+  });
+});
+
+describe('create a S3 Event()', () => {
+  it('should return a valid event', () => {
     const event = createEvent('aws:s3', {
       Records: [
         {
@@ -93,7 +136,7 @@ describe('createS3Event()', () => {
     expect(event?.Records?.[0]?.eventName).toBe('ObjectCreated:Put');
   });
 
-  it('should return S3 mocked event without side-effect', () => {
+  it('should return a valid event without side-effect', () => {
     const event = createEvent('aws:s3', {
       Records: [
         {
@@ -132,8 +175,8 @@ describe('createS3Event()', () => {
   });
 });
 
-describe('createScheduledEvent()', () => {
-  it('should return Scheduled mocked event', () => {
+describe('create a Scheduled event()', () => {
+  it('should return a valid event', () => {
     const event = createEvent('aws:scheduled', {
       region: 'us-west-2',
     });
@@ -143,100 +186,57 @@ describe('createScheduledEvent()', () => {
   });
 });
 
-describe('createKinesisEvent()', () => {
-  it('should return Kinesis mocked event', () => {
-    const event = createEvent('aws:kinesis', {
+describe('create a SNS event', () => {
+  it('should return a valid event', () => {
+    const event = createEvent('aws:sns', {
       Records: [
         {
-          kinesis: {
-            data: Buffer.from('kinesis test').toString('base64'),
+          Sns: {
+            Message: 'trigger-email',
           },
         },
       ],
     });
 
-    expect(Buffer.from(event?.Records?.[0]?.kinesis?.data ?? '', 'base64').toString('ascii')).toBe(
-      'kinesis test',
-    );
+    expect(event?.Records?.[0]?.Sns?.Message).toBe('trigger-email');
+    expect(event?.Records?.[0]?.Sns?.Type).toBe('Notification');
   });
 });
 
-describe('createCloudWatchEvent()', () => {
+describe('create a SQS event', () => {
   it('should return a valid event', () => {
-    const event = createEvent('aws:cloudWatch', {
-      'detail-type': 'Something has been deleted.',
-      region: 'us-east-1',
-    });
-
-    expect(event['detail-type']).toBe('Something has been deleted.');
-    expect(event.region).toBe('us-east-1');
-  });
-});
-
-describe('createCloudWatchLogEvent()', () => {
-  it('should return a valid event', () => {
-    const event = createEvent('aws:cloudWatchLog', {
-      awslogs: {
-        data: 'Some gzipped, then base64 encoded data',
-      },
-    });
-
-    expect(event?.awslogs?.data).toBe('Some gzipped, then base64 encoded data');
-  });
-});
-
-describe('createAlexaSkillEvent()', () => {
-  it('should return a valid event', () => {
-    const event = createEvent('aws:alexaSkill', {
-      request: {
-        type: 'CanFulfillIntentRequest',
-      },
-      context: {
-        System: {
-          device: {
-            deviceId: 'myDevice',
-          },
+    const event = createEvent('aws:sqs', {
+      Records: [
+        {
+          body: JSON.stringify({
+            foo: 'bar',
+          }),
         },
-      },
+      ],
     });
 
-    expect(event?.request?.type).toBe('CanFulfillIntentRequest');
-    expect(event?.context?.System?.device?.deviceId).toBe('myDevice');
+    expect(event?.Records?.[0]?.body).toBe('{"foo":"bar"}');
+    expect(event?.Records?.[0]?.eventSource).toBe('aws:sqs');
   });
 });
 
-describe('createAlexaSmartHomeEvent()', () => {
+describe('create a WebSocket Event()', () => {
   it('should return a valid event', () => {
-    const event = createEvent('aws:alexaSmartHome', {
-      payload: {
-        switchControlAction: 'TURN_OFF',
+    const event = createEvent('aws:websocket', {
+      body: JSON.stringify({
+        first_name: 'Sam',
+        last_name: 'Smith',
+      }),
+      requestContext: {
+        connectedAt: 123,
+        connectionId: 'abc123',
       },
     });
+    const parsedBody = JSON.parse(event.body || '');
 
-    expect(event?.payload?.switchControlAction).toBe('TURN_OFF');
-  });
-});
-
-describe('createIotEvent()', () => {
-  it('should return a valid event', () => {
-    const event = createEvent('aws:iot', {
-      this: {
-        can: {
-          be: 'anything I want',
-        },
-      },
-    });
-
-    expect(event.this.can.be).toBe('anything I want');
-  });
-});
-
-describe('createCognitoPoolEvent()', () => {
-  it('should return a valid event', () => {
-    const event = createEvent('aws:cognitoUserPool', {
-      userName: 'notAJ',
-    });
-
-    expect(event.userName).toBe('notAJ');
+    expect(parsedBody.first_name).toBe('Sam');
+    expect(parsedBody.last_name).toBe('Smith');
+    expect(event?.requestContext?.connectedAt).toBe(123);
+    expect(event?.requestContext?.connectionId).toBe('abc123');
   });
 });
