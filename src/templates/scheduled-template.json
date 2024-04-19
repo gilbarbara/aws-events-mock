@@ -1,13 +1,13 @@
 {
-  "version": "0",
-  "id": "d77bcbc4-0b2b-4d45-9694-b1df99175cfb",
-  "detail-type": "Scheduled Event",
-  "source": "aws.events",
   "account": "123456789",
-  "time": "2016-09-25T04:55:26Z",
+  "detail": {},
+  "detail-type": "Scheduled Event",
+  "id": "d77bcbc4-0b2b-4d45-9694-b1df99175cfb",
   "region": "us-east-1",
   "resources": [
     "arn:aws:events:us-east-1:123456789:rule/test-service-rule"
   ],
-  "detail": {}
+  "source": "aws.events",
+  "time": "2016-09-25T04:55:26Z",
+  "version": "0"
 }

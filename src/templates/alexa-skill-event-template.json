@@ -1,22 +1,4 @@
 {
-  "version": "1.0",
-  "session": {
-    "new": true,
-    "sessionId": "amzn1.echo-api.session.123123123",
-    "application": {
-      "applicationId": "amzn1.ask.skill.123"
-    },
-    "attributes": {
-      "key": "this is an attribute"
-    },
-    "user": {
-      "userId": "amzn1.ask.account.abc",
-      "accessToken": "Atza|AAAAAAAA...",
-      "permissions": {
-        "consentToken": "ZZZZZZZ..."
-      }
-    }
-  },
   "context": {
     "System": {
       "device": {
@@ -29,25 +11,43 @@
         "applicationId": "amzn1.ask.skill.foobar"
       },
       "user": {
-        "userId": "amzn1.ask.account.user_name",
         "accessToken": "Atza|AAAAAAAA...",
         "permissions": {
           "consentToken": "ZZZZZZZ..."
-        }
+        },
+        "userId": "amzn1.ask.account.user_name"
       },
       "apiEndpoint": "https://api.amazonalexa.com",
       "apiAccessToken": "AxThk..."
     },
     "AudioPlayer": {
+      "offsetInMilliseconds": 0,
       "playerActivity": "PLAYING",
-      "token": "audioplayer-token",
-      "offsetInMilliseconds": 0
+      "token": "audioplayer-token"
     }
   },
   "request": {
-    "type": "LaunchRequest",
+    "locale": "en-US",
     "requestId": "1234-5678-abcd",
     "timestamp": "123123",
-    "locale": "en-US"
-  }
+    "type": "LaunchRequest"
+  },
+  "session": {
+    "application": {
+      "applicationId": "amzn1.ask.skill.123"
+    },
+    "attributes": {
+      "key": "this is an attribute"
+    },
+    "new": true,
+    "sessionId": "amzn1.echo-api.session.123123123",
+    "user": {
+      "accessToken": "Atza|AAAAAAAA...",
+      "permissions": {
+        "consentToken": "ZZZZZZZ..."
+      },
+      "userId": "amzn1.ask.account.abc"
+    }
+  },
+  "version": "1.0"
 }

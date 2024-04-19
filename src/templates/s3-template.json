@@ -1,24 +1,19 @@
 {
   "Records": [
     {
-      "eventVersion": "2.0",
-      "eventSource": "aws:s3",
       "awsRegion": "us-east-1",
-      "eventTime": "2016-09-25T05:15:44.261Z",
       "eventName": "ObjectCreated:Put",
-      "userIdentity": {
-        "principalId": "AWS:AROAW5CA2KAGZPAWYRL7K:cli"
-      },
+      "eventSource": "aws:s3",
+      "eventTime": "2016-09-25T05:15:44.261Z",
+      "eventVersion": "2.0",
       "requestParameters": {
         "sourceIPAddress": "222.24.107.21"
       },
       "responseElements": {
-        "x-amz-request-id": "00093EEAA5C7G7F2",
-        "x-amz-id-2": "9tTklyI/OEj4mco12PgsNksgxAV3KePn7WlNSq2rs+LXD3xFG0tlzgvtH8hClZzI963KYJgVnXw="
+        "x-amz-id-2": "9tTklyI/OEj4mco12PgsNksgxAV3KePn7WlNSq2rs+LXD3xFG0tlzgvtH8hClZzI963KYJgVnXw=",
+        "x-amz-request-id": "00093EEAA5C7G7F2"
       },
       "s3": {
-        "s3SchemaVersion": "1.0",
-        "configurationId": "151dfa64-d57a-4383-85ac-620bce65f269",
         "bucket": {
           "name": "service-1474780369352-1",
           "ownerIdentity": {
@@ -26,12 +21,17 @@
           },
           "arn": "arn:aws:s3:::service-1474780369352-1"
         },
+        "configurationId": "151dfa64-d57a-4383-85ac-620bce65f269",
         "object": {
-          "key": "object",
-          "size": 11,
           "eTag": "5eb63bbbe01eetd093cb22bb8f5acdc3",
-          "sequencer": "0057E75D80IA35C3E0"
-        }
+          "key": "object",
+          "sequencer": "0057E75D80IA35C3E0",
+          "size": 11
+        },
+        "s3SchemaVersion": "1.0"
+      },
+      "userIdentity": {
+        "principalId": "AWS:AROAW5CA2KAGZPAWYRL7K:cli"
       }
     }
   ]
