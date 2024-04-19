@@ -36,20 +36,20 @@ type DeepPartial<T> = T extends object
 type EventDictionary = typeof dictionary;
 
 export const dictionary = {
-  'aws:sns': snsTemplate as DeepPartial<SNSEvent>,
-  'aws:sqs': sqsTemplate as DeepPartial<SQSEvent>,
-  'aws:apiGateway': apiGatewayTemplate as DeepPartial<APIGatewayEvent>,
-  'aws:scheduled': scheduledTemplate as DeepPartial<ScheduledEvent>,
-  'aws:s3': s3Template as DeepPartial<S3Event>,
-  'aws:kinesis': kinesisTemplate as DeepPartial<KinesisStreamEvent>,
-  'aws:dynamo': dynamoTemplate as DeepPartial<DynamoDBStreamEvent>,
-  'aws:cloudWatchLog': cloudwatchLogEventTemplate as DeepPartial<CloudWatchLogsEvent>,
-  'aws:alexaSmartHome': alexaSmartHomeEventTemplate as DeepPartial<AlexaSmartHomeEvent>,
-  'aws:alexaSkill': alexaSkillEventTemplate as DeepPartial<AlexaSkillEvent>,
-  'aws:cloudWatch': cloudWatchEventTemplate as DeepPartial<CloudWatchEvent>,
+  'aws:sns': snsTemplate as SNSEvent,
+  'aws:sqs': sqsTemplate as SQSEvent,
+  'aws:apiGateway': apiGatewayTemplate as APIGatewayEvent,
+  'aws:scheduled': scheduledTemplate as ScheduledEvent,
+  'aws:s3': s3Template as S3Event,
+  'aws:kinesis': kinesisTemplate as KinesisStreamEvent,
+  'aws:dynamo': dynamoTemplate as DynamoDBStreamEvent,
+  'aws:cloudWatchLog': cloudwatchLogEventTemplate as CloudWatchLogsEvent,
+  'aws:alexaSmartHome': alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
+  'aws:alexaSkill': alexaSkillEventTemplate as AlexaSkillEvent,
+  'aws:cloudWatch': cloudWatchEventTemplate as CloudWatchEvent,
   'aws:iot': {} as any,
-  'aws:cognitoUserPool': cognitoUserPoolEventTemplate as DeepPartial<CognitoUserPoolEvent>,
-  'aws:websocket': apiGatewayTemplate as DeepPartial<APIGatewayEvent>, // Websockets are included in APIG typedef: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/32855/files
+  'aws:cognitoUserPool': cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
+  'aws:websocket': apiGatewayTemplate as APIGatewayEvent,
 };
 
 export default function createEvent<T extends keyof EventDictionary>(
